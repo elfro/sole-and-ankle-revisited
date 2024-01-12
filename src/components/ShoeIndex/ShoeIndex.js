@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { WEIGHTS } from '../../constants';
+import { QUERIES, WEIGHTS } from '../../constants';
 
 import Breadcrumbs from '../Breadcrumbs';
 import Select from '../Select';
@@ -15,14 +15,16 @@ const ShoeIndex = ({ sortId, setSortId }) => {
       <MainColumn>
         <Header>
           <Title>Running</Title>
-          <Select
-            label="Sort"
-            value={sortId}
-            onChange={(ev) => setSortId(ev.target.value)}
-          >
-            <option value="newest">Newest Releases</option>
-            <option value="price">Price</option>
-          </Select>
+          <SelectWrapper>
+            <Select
+              label="Sort"
+              value={sortId}
+              onChange={(ev) => setSortId(ev.target.value)}
+            >
+              <option value="newest">Newest Releases</option>
+              <option value="price">Price</option>
+            </Select>
+          </SelectWrapper>
         </Header>
         <Spacer size={32} />
         <ShoeGrid />
@@ -35,7 +37,7 @@ const ShoeIndex = ({ sortId, setSortId }) => {
             Shoes
           </Breadcrumbs.Crumb>
         </Breadcrumbs>
-        <Spacer size={42} />
+        <SpacerWrapper size={42} />
         <ShoeSidebar />
       </LeftColumn>
     </Wrapper>
@@ -47,11 +49,21 @@ const Wrapper = styled.div`
   flex-direction: row-reverse;
   align-items: baseline;
   gap: 32px;
+  
+  ${QUERIES.tabletAndLess} {
+      flex-direction: column-reverse;
+      gap: revert;
+  }  
 `;
 
 const LeftColumn = styled.div`
   flex-basis: 248px;
+
+  ${QUERIES.tabletAndLess} {
+      flex-basis: revert;
+  }
 `;
+
 
 const MainColumn = styled.div`
   flex: 1;
@@ -66,6 +78,18 @@ const Header = styled.header`
 const Title = styled.h2`
   font-size: 1.5rem;
   font-weight: ${WEIGHTS.medium};
+`;
+
+const SelectWrapper = styled.div`
+  ${QUERIES.mobileAndLess} {
+      display: none;
+  }
+`;
+
+const SpacerWrapper = styled(Spacer)`
+  ${QUERIES.tabletAndLess} {
+      display: none;
+  }
 `;
 
 export default ShoeIndex;
