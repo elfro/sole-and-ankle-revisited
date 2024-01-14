@@ -6,30 +6,107 @@ import { DialogOverlay, DialogContent } from '@reach/dialog';
 import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
+import { COLORS, QUERIES, WEIGHTS } from '../../constants';
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
-  if (!isOpen) {
-    return null;
-  }
-
   return (
-    <div>
-      <button onClick={onDismiss}>Dismiss menu</button>
-      <nav>
-        <a href="/sale">Sale</a>
-        <a href="/new">New&nbsp;Releases</a>
-        <a href="/men">Men</a>
-        <a href="/women">Women</a>
-        <a href="/kids">Kids</a>
-        <a href="/collections">Collections</a>
-      </nav>
-      <footer>
-        <a href="/terms">Terms and Conditions</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/contact">Contact Us</a>
-      </footer>
-    </div>
+    <Overlay
+      isOpen={isOpen}
+      onDismiss={onDismiss}
+    >
+      <Content aria-label='Menu'>
+        <CloseButton onClick={onDismiss}>
+          <Icon id='close' size={24}/>
+          <VisuallyHidden>Dismiss button</VisuallyHidden>
+        </CloseButton>
+        <Side />
+        <Menu>
+          <MenuItem href="/sale">Sale</MenuItem>
+          <MenuItem href="/new">New&nbsp;Releases</MenuItem>
+          <MenuItem href="/men">Men</MenuItem>
+          <MenuItem href="/women">Women</MenuItem>
+          <MenuItem href="/kids">Kids</MenuItem>
+          <MenuItem href="/collections">Collections</MenuItem>
+        </Menu>
+        <Footer>
+          <FooterItem href="/terms">Terms and Conditions</FooterItem>
+          <FooterItem href="/privacy">Privacy Policy</FooterItem>
+          <FooterItem href="/contact">Contact Us</FooterItem>
+        </Footer>
+      </Content>
+    </Overlay>
   );
 };
 
+const Overlay = styled(DialogOverlay)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: var(--color-overlay-gray);
+`;
+
+const Content = styled(DialogContent)`
+  position: relative;
+  left: 20%;
+  width: 80%;
+  height: 100%;
+  padding: 32px;  
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-white);
+  overflow: auto;
+`;
+
+const Menu = styled.nav`
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 22px;  
+`;
+
+const MenuItem = styled.a`
+  font-size: 1.125rem;
+  font-weight: ${WEIGHTS.medium};
+  color: var(--color-gray-900);
+  text-transform: uppercase;
+  text-decoration: none;
+  
+  &:hover {
+      color: var(--color-secondary);
+  }
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 16px;
+`;
+
+const FooterItem = styled.a`
+  font-size: 0.875rem;
+  font-weight: ${WEIGHTS.normal};
+  color: var(--color-gray-700);
+  text-decoration: none;
+
+  &:hover {
+      text-decoration: revert;
+  }
+`;
+
+const CloseButton = styled(UnstyledButton)`
+  position: fixed;
+  top: 26px;
+  right: 16px;  
+  width: 24px;
+  height: 24px;  
+`;
+
+const Side = styled.div`
+  flex: 1;
+`;
 export default MobileMenu;

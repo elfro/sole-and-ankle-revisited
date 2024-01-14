@@ -59,13 +59,13 @@ const MainHeader = styled.div`
   display: flex;
   align-items: baseline;
   padding: 18px 32px;
-  height: 72px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+  border-bottom: 1px solid var(--color-gray-300);
+  overflow: auto;
 
   ${QUERIES.tabletAndLess} {
       justify-content: space-between;
       align-items: center;
-      border-top: 4px solid ${COLORS.gray[900]};
+      border-top: 4px solid var(--color-gray-900);
   }
     
   ${QUERIES.mobileAndLess} {
@@ -75,7 +75,7 @@ const MainHeader = styled.div`
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(1rem, 6vw - 3rem, 3rem);
   margin: 0px 48px;
 
   ${QUERIES.tabletAndLess} {
@@ -89,7 +89,7 @@ const MobileNav = styled.nav`
   ${QUERIES.tabletAndLess} {
       display: flex;
       gap: 32px;
-      color: ${COLORS.gray[900]};
+      color: var(--color-gray-900);
       margin-left: 32px;
   }
 
@@ -122,11 +122,12 @@ const NavLink = styled.a`
   font-size: 1.125rem;
   text-transform: uppercase;
   text-decoration: none;
-  color: ${COLORS.gray[900]};
+  color: var(--color-gray-900);
   font-weight: ${WEIGHTS.medium};
+  text-wrap: nowrap;  
 
   &:first-of-type {
-    color: ${COLORS.secondary};
+    color: var(--color-secondary);
   }
 `;
 
