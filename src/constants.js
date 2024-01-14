@@ -1,14 +1,15 @@
+// eslint-disable-next-line
 export const COLORS = {
-  white: 'hsl(0deg 0% 100%)',
+  white: '0deg 0% 100%',
   gray: {
-    100: 'hsl(185deg 5% 95%)',
-    300: 'hsl(190deg 5% 80%)',
-    500: 'hsl(196deg 4% 60%)',
-    700: 'hsl(220deg 5% 40%)',
-    900: 'hsl(220deg 3% 20%)',
+    100: '185deg 5% 95%',
+    300: '190deg 5% 80%',
+    500: '196deg 4% 60%',
+    700: '220deg 5% 40%',
+    900: '220deg 3% 20%',
   },
-  primary: 'hsl(340deg 65% 47%)',
-  secondary: 'hsl(240deg 60% 63%)',
+  primary: '340deg 65% 47%',
+  secondary: '240deg 60% 63%',
 };
 
 export const WEIGHTS = {
@@ -16,3 +17,15 @@ export const WEIGHTS = {
   medium: 600,
   bold: 800,
 };
+
+export const BREAKPOINTS = {
+  mobileMax: 600,
+  tabletMax: 950,
+  laptopMax: 1300,
+};
+
+export const QUERIES = {
+  mobileAndLess: `@media(max-width: ${BREAKPOINTS.mobileMax / 16}rem)`,
+  tabletAndLess: `@media(max-width: ${BREAKPOINTS.tabletMax / 16}rem)`,
+  laptopAndLess: `@media(max-width: ${BREAKPOINTS.laptopMax / 16}rem)`,
+}
