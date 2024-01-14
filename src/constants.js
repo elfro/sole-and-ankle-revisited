@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 export const COLORS = {
   white: '0deg 0% 100%',
   gray: {

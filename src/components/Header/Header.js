@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, QUERIES, WEIGHTS } from '../../constants';
+import { QUERIES, WEIGHTS } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
@@ -24,11 +24,17 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <Nav>
-          <NavLink href="/sale">Sale</NavLink>
+{/*          <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
+          <NavLink href="/collections">Collections</NavLink>*/}
+          <NavLink href="/sale">A Vente</NavLink>
+          <NavLink href="/new">New&nbsp;Nouvelles Versions</NavLink>
+          <NavLink href="/men">Hommes</NavLink>
+          <NavLink href="/women">Femmes</NavLink>
+          <NavLink href="/kids">Les Enfants</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <MobileNav>
