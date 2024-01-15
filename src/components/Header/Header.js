@@ -6,6 +6,7 @@ import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
 import Icon from '../Icon';
+import VisuallyHidden from '../VisuallyHidden';
 import UnstyledButton from '../UnstyledButton/UnstyledButton';
 
 const Header = () => {
@@ -24,30 +25,27 @@ const Header = () => {
           <Logo />
         </LogoWrapper>
         <Nav>
-{/*          <NavLink href="/sale">Sale</NavLink>
+          <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
           <NavLink href="/men">Men</NavLink>
           <NavLink href="/women">Women</NavLink>
           <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>*/}
-          <NavLink href="/sale">A Vente</NavLink>
-          <NavLink href="/new">New&nbsp;Nouvelles Versions</NavLink>
-          <NavLink href="/men">Hommes</NavLink>
-          <NavLink href="/women">Femmes</NavLink>
-          <NavLink href="/kids">Les Enfants</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <MobileNav>
           <ButtonWrapper>
             <Icon id="shopping-bag" strokeWidth={2} />
+            <VisuallyHidden>Open Cart</VisuallyHidden>
           </ButtonWrapper>
           <ButtonWrapper>
             <Icon id="search" strokeWidth={2} />
+            <VisuallyHidden>Search</VisuallyHidden>
           </ButtonWrapper>
           <ButtonWrapper
             onClick={() => setShowMobileMenu(true)}
           >
             <Icon id="menu" strokeWidth={2} />
+            <VisuallyHidden>Open Menu</VisuallyHidden>
           </ButtonWrapper>
         </MobileNav>
         <Side />
@@ -112,7 +110,7 @@ const LogoWrapper = styled.div`
   flex: 1;
 
   ${QUERIES.tabletAndLess} {
-      display: revert;
+      flex: revert;
   }  
 `;
 
