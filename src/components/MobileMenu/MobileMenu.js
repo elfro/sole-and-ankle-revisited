@@ -17,7 +17,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
       <Content aria-label='Menu'>
         <CloseButton onClick={onDismiss}>
           <Icon id='close' size={24}/>
-          <VisuallyHidden>Dismiss button</VisuallyHidden>
+          <VisuallyHidden>Close Menu</VisuallyHidden>
         </CloseButton>
         <Side />
         <Menu>
@@ -63,8 +63,8 @@ const Content = styled(DialogContent)`
 const Menu = styled.nav`
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  margin-bottom: 22px;  
+  gap: 16px;
+  margin-bottom: 16px;  
 `;
 
 const MenuItem = styled.a`
@@ -84,7 +84,7 @@ const Footer = styled.footer`
   flex-direction: column;
   justify-content: flex-end;
   flex: 1;
-  gap: 16px;
+  gap: 11px;
 `;
 
 const FooterItem = styled.a`
@@ -100,10 +100,9 @@ const FooterItem = styled.a`
 
 const CloseButton = styled(UnstyledButton)`
   position: fixed;
-  top: 26px;
-  right: 16px;  
-  width: 24px;
-  height: 24px;  
+  top: 10px;
+  right: 0;
+  padding: 16px;
 `;
 
 const Side = styled.div`
