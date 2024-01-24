@@ -10,31 +10,34 @@ import { COLORS, QUERIES, WEIGHTS } from '../../constants';
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
   return (
-    <Overlay
+    <Wrapper
       isOpen={isOpen}
       onDismiss={onDismiss}
     >
+      <Overlay />
       <Content aria-label='Menu'>
-        <CloseButton onClick={onDismiss}>
-          <Icon id='close' size={24}/>
-          <VisuallyHidden>Close Menu</VisuallyHidden>
-        </CloseButton>
-        <Side />
-        <Menu>
-          <MenuItem href="/sale">Sale</MenuItem>
-          <MenuItem href="/new">New&nbsp;Releases</MenuItem>
-          <MenuItem href="/men">Men</MenuItem>
-          <MenuItem href="/women">Women</MenuItem>
-          <MenuItem href="/kids">Kids</MenuItem>
-          <MenuItem href="/collections">Collections</MenuItem>
-        </Menu>
-        <Footer>
-          <FooterItem href="/terms">Terms and Conditions</FooterItem>
-          <FooterItem href="/privacy">Privacy Policy</FooterItem>
-          <FooterItem href="/contact">Contact Us</FooterItem>
-        </Footer>
+        <InnerWrapper>
+          <CloseButton onClick={onDismiss}>
+            <Icon id='close' size={24}/>
+            <VisuallyHidden>Close Menu</VisuallyHidden>
+          </CloseButton>
+          <Side />
+          <Menu>
+            <MenuItem href="/sale">Sale</MenuItem>
+            <MenuItem href="/new">New&nbsp;Releases</MenuItem>
+            <MenuItem href="/men">Men</MenuItem>
+            <MenuItem href="/women">Women</MenuItem>
+            <MenuItem href="/kids">Kids</MenuItem>
+            <MenuItem href="/collections">Collections</MenuItem>
+          </Menu>
+          <Footer>
+            <FooterItem href="/terms">Terms and Conditions</FooterItem>
+            <FooterItem href="/privacy">Privacy Policy</FooterItem>
+            <FooterItem href="/contact">Contact Us</FooterItem>
+          </Footer>
+        </InnerWrapper>
       </Content>
-    </Overlay>
+    </Wrapper>
   );
 };
 
@@ -56,8 +59,18 @@ const slideIn = keyframes`
   }  
 `;
 
-const Overlay = styled(DialogOverlay)`
+const Wrapper = styled(DialogOverlay)`
   position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: transparent;
+`;
+
+const Overlay = styled.div`
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -68,18 +81,29 @@ const Overlay = styled(DialogOverlay)`
 `;
 
 const Content = styled(DialogContent)`
+  --overfill: 16px;
   position: relative;
   left: 20%;
-  width: 80%;
+  width: calc(80% + var(--overfill));
   height: 100%;
-  padding: 32px;  
-  display: flex;
-  flex-direction: column;
+  padding: 32px;
+  margin-right: calc(var(--overfill) * -1);
   background-color: var(--color-white);
   overflow: auto;
   @media (prefers-reduced-motion: no-preference) {
       animation: ${slideIn} 500ms both cubic-bezier(0, 0.6, 0.99, 1.08) 200ms;
   }
+`;
+
+const InnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  @media (prefers-reduced-motion: no-preference) {
+      animation: ${fadeIn} 500ms both;
+      animation-delay: 400ms;
+  }  
 `;
 
 const Menu = styled.nav`
@@ -123,7 +147,7 @@ const FooterItem = styled.a`
 const CloseButton = styled(UnstyledButton)`
   position: fixed;
   top: 10px;
-  right: 0;
+  right: var(--overfill);
   padding: 16px;
 `;
 
