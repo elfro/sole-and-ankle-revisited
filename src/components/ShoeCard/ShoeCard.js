@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, {keyframes} from 'styled-components/macro';
 
 import { WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
@@ -36,11 +36,11 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && (
-            <NewFlag>Just released!</NewFlag>
-          )}
         </ImageWrapper>
+        {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
+        {variant === 'new-release' && (
+          <NewFlag>Just released!</NewFlag>
+        )}
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -69,17 +69,40 @@ const ShoeCard = ({
 const Link = styled.a`
   text-decoration: none;
   color: inherit;
+  transition: filter 500ms ease;
+  will-change: filter;
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      &:hover,
+      &:focus {
+          transition: filter 250ms ease;
+          filter: drop-shadow(0px -4px 8px var(--color-gray-300));
+      }  
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+    position: relative;
+`;
 
 const ImageWrapper = styled.div`
   position: relative;
+  overflow: hidden;
+  border-radius: 16px 16px 4px 4px;
 `;
 
 const Image = styled.img`
+  display: block;  
   width: 100%;
-  border-radius: 16px 16px 4px 4px;
+  transition: 500ms ease;
+  transform-origin: center bottom;  
+  will-change: transform;
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      ${Link}:hover &,
+      ${Link}:focus & {
+          transition: 250ms ease;
+          transform: scale(1.1);
+  }
 `;
 
 const Row = styled.div`
