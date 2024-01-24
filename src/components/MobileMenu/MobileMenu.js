@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 import { DialogOverlay, DialogContent } from '@reach/dialog';
 
 import UnstyledButton from '../UnstyledButton';
@@ -38,6 +38,24 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
+const fadeIn = keyframes`
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+`;
+
+const slideIn = keyframes`
+  from {
+      transform: translateX(100%);
+  }
+  to {
+      transform: translateX(0);
+  }  
+`;
+
 const Overlay = styled(DialogOverlay)`
   position: fixed;
   top: 0;
@@ -46,6 +64,7 @@ const Overlay = styled(DialogOverlay)`
   bottom: 0;
   height: 100%;
   background-color: var(--color-overlay-gray);
+  animation: ${fadeIn} 500ms;  
 `;
 
 const Content = styled(DialogContent)`
@@ -58,6 +77,9 @@ const Content = styled(DialogContent)`
   flex-direction: column;
   background-color: var(--color-white);
   overflow: auto;
+  @media (prefers-reduced-motion: no-preference) {
+      animation: ${slideIn} 500ms both cubic-bezier(0, 0.6, 0.99, 1.08) 200ms;
+  }
 `;
 
 const Menu = styled.nav`
